@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        lineRenderer = GameObject.AddComponent<LineRenderer>();
+
     }
 
     // Update is called once per frame
