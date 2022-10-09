@@ -13,16 +13,15 @@ public class PlayerController : MonoBehaviour
     private int numPickups = 7;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI winText;
-    public TextMeshProUGUI playerPosition;
-    public TextMeshProUGUI playerVelocity;
-    private Vector3 initPosition;
+    private Vector3 lastPosition;
+    private float playerSpeed;
     
     void Start()
     {
         count = 0;
         winText.text = "";
         SetCountText();
-        initPosition = transform.position;
+        lastPosition = transform.position;
     }
 
     void OnMove(InputValue value)
@@ -36,15 +35,11 @@ public class PlayerController : MonoBehaviour
 
             GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
 
-        SetPositionText();
-        SetVelocityText();
-        initPosition = transform.position;
+        //SetPositionText();
+        //SetVelocityText();
+        lastPosition = transform.position;
              }
     
-    void Update()
-    {
-        //initPosition = transform.position;
-    }
 
     void OnTriggerEnter(Collider other)
         {
@@ -63,7 +58,7 @@ public class PlayerController : MonoBehaviour
             winText.text = "You win!";
         }
     }
-    private void SetPositionText()
+ /*   private void SetPositionText()
     {
         Vector3 position = transform.position;
         string positionText = position.ToString();
@@ -72,7 +67,7 @@ public class PlayerController : MonoBehaviour
     private void SetVelocityText()
     {
         Vector3 position = transform.position;
-        Vector3 velocity = (position - initPosition) / Time.deltaTime;
+        float velocity = Vector3.Distance(position, lastPosition) / Time.deltaTime;
         playerVelocity.text = velocity.ToString();
-    }
+    }*/
 }
